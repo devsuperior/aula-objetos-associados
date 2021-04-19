@@ -9,19 +9,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.devsuperior.dscatalog.dto.PersonDTO;
 import com.devsuperior.dscatalog.dto.ProductDTO;
-import com.devsuperior.dscatalog.services.ProductService;
+import com.devsuperior.dscatalog.services.PersonService;
 
 @RestController
-@RequestMapping(value = "/products")
-public class ProductResource {
+@RequestMapping(value = "/people")
+public class PersonResource {
 
 	@Autowired
-	private ProductService service;
+	private PersonService service;
 
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<ProductDTO> findById(@PathVariable Long id) {
-		ProductDTO dto = service.findById(id);
+	public ResponseEntity<PersonDTO> findById(@PathVariable Long id) {
+		PersonDTO dto = service.findById(id);
 		return ResponseEntity.ok(dto);
 	}
 	

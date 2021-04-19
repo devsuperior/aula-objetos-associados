@@ -1,42 +1,38 @@
 package com.devsuperior.dscatalog.entities;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_product")
-public class Product implements Serializable {
+@Table(name = "tb_person")
+public class Person implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	private Double price;
+	private Double salary;
 	
-	@ManyToMany
-	@JoinTable(name = "tb_product_category",
-		joinColumns = @JoinColumn(name = "product_id"),
-		inverseJoinColumns = @JoinColumn(name = "category_id"))	
-	Set<Category> categories = new HashSet<>();
+	@ManyToOne
+	@JoinColumn(name = "department_id")
+	private Department department;
 	
-	public Product() {
+	public Person() {
 	}
 
-	public Product(Long id, String name, Double price) {
+	public Person(Long id, String name, Double salary, Department department) {
 		this.id = id;
 		this.name = name;
-		this.price = price;
+		this.salary = salary;
+		this.department = department;
 	}
 
 	public Long getId() {
@@ -55,16 +51,20 @@ public class Product implements Serializable {
 		this.name = name;
 	}
 
-	public Double getPrice() {
-		return price;
+	public Double getSalary() {
+		return salary;
 	}
 
-	public void setPrice(Double price) {
-		this.price = price;
+	public void setSalary(Double salary) {
+		this.salary = salary;
 	}
 
-	public Set<Category> getCategories() {
-		return categories;
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 
 	@Override
@@ -83,7 +83,7 @@ public class Product implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Product other = (Product) obj;
+		Person other = (Person) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
