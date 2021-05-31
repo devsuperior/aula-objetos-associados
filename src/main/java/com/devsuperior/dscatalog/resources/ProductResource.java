@@ -27,7 +27,7 @@ public class ProductResource {
 	
 	@PostMapping
 	public ResponseEntity<ProductDTO> insert(@RequestBody ProductDTO obj) {
-		//obj = service.insert(obj);
+		obj = service.insert(obj);
 		return ResponseEntity.ok(obj);
 	}	
 }

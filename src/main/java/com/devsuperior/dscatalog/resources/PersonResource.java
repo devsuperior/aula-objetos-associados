@@ -27,7 +27,7 @@ public class PersonResource {
 	
 	@PostMapping
 	public ResponseEntity<PersonDTO> insert(@RequestBody PersonDTO obj) {
-		//obj = service.insert(obj);
+		obj = service.insert(obj);
 		return ResponseEntity.ok(obj);
 	}	
 }
