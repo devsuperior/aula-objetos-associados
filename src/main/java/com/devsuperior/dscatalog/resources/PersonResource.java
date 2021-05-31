@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devsuperior.dscatalog.dto.PersonDTO;
-import com.devsuperior.dscatalog.dto.ProductDTO;
 import com.devsuperior.dscatalog.services.PersonService;
 
 @RestController
@@ -27,7 +26,7 @@ public class PersonResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<ProductDTO> insert(@RequestBody ProductDTO obj) {
+	public ResponseEntity<PersonDTO> insert(@RequestBody PersonDTO obj) {
 		//obj = service.insert(obj);
 		return ResponseEntity.ok(obj);
 	}	
